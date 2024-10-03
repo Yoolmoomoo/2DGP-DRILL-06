@@ -1,11 +1,11 @@
 from pico2d import *
 
-TUK_WIDTH, TUK_HEIGHT = 1280, 1024
+TUK_WIDTH, TUK_HEIGHT = 1000, 800
 open_canvas(TUK_WIDTH, TUK_HEIGHT)
 
 TUK_ground = load_image('TUK_GROUND.png')
 character = load_image('animation_sheet.png')
-
+mouse = load_image('hand_arrow.png')
 
 def handle_events():
     global running
@@ -30,6 +30,7 @@ hide_cursor()
 while running:
     clear_canvas()
     TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
+    mouse.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
     character.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
     update_canvas()
     frame = (frame + 1) % 8
