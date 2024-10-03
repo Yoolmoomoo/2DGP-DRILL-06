@@ -28,20 +28,21 @@ def place_hand_randomly():
 
 def find_hand():
     global frame, x, y, hand_x, hand_y, t,i
-    character.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
     i += 4
     t = i / 100
     x = (1-t)*x + t*hand_x
     y = (1-t)*y + t*hand_y
+    if hand_x <= x:
+        character.clip_composite_draw(frame * 100, 100 * 1, 100, 100, 0, 'h', x, y, 100, 100)
+    elif hand_x > x:
+        character.clip_composite_draw(frame * 100, 100 * 1, 100, 100, 0, ' ', x, y, 100, 100)
     if i == 100:
         i = 0
-        delay(0.1)
     pass
 
 i = 0
 t = 0
 running = True
-speed = 10
 hand_x, hand_y = TUK_WIDTH // 2, TUK_HEIGHT // 2
 x, y = TUK_WIDTH // 2, TUK_HEIGHT // 2
 frame = 0
@@ -54,7 +55,7 @@ while running:
     find_hand()
     update_canvas()
     frame = (frame + 1) % 8
-    delay(0.01)
+    delay(0.07)
 
     handle_events()
 
