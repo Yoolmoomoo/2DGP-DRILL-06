@@ -21,16 +21,14 @@ def handle_events():
 def place_hand_randomly():
     global hand, hand_x ,hand_y
     hand.draw(hand_x, hand_y)
-    hand_x = random.randint(100, 900)
-    hand_y = random.randint(100, 700)
+    if x == hand_x and y == hand_y:
+        hand_x = random.randint(100, 900)
+        hand_y = random.randint(100, 700)
     pass
 
 def find_hand():
     global frame, x, y
     character.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
-    pass
-
-def run_away_hand():
     pass
 
 running = True
@@ -44,10 +42,9 @@ while running:
     TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
     place_hand_randomly()
     find_hand()
-    run_away_hand()
     update_canvas()
     frame = (frame + 1) % 8
-    delay(0.5)
+    delay(0.05)
 
     handle_events()
 
